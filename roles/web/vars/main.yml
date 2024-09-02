@@ -1,0 +1,10 @@
+---
+web_packages:
+  - httpd
+  - mod_ssl
+
+users_to_create:
+  - name: "webadmin"
+    uid: 100001
+  - name: "webuser"
+    uid: 100002

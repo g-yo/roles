@@ -1,0 +1,30 @@
+---
+- name: Install web server packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ web_packages }}"
+
+- name: Create web server users
+  user:
+    name: "{{ item.name }}"
+    uid: "{{ item.uid }}"
+    state: present
+  loop: "{{ users_to_create }}"
+
+- name: Deploy custom httpd.conf
+  copy:
+    src: httpd.conf
+    dest: /etc/httpd/conf/httpd.conf
+  notify: Restart web server
+
+- name: Deploy index.html template
+  template:
+    src: index.html.j2
+    dest: "{{ web_server_root }}/index.html"
+
+- name: Ensure web server is started and enabled
+  service:
+    name: httpd
+    state: started
+    enabled: true

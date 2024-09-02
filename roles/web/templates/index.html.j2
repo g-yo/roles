@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_title }}</title>
+    <link rel="stylesheet" href="{{ css_file }}">
+</head>
+<body>
+    <header>
+        <h1>{{ header_title }}</h1>
+        <nav>
+            <ul>
+                {% for item in navigation_links %}
+                <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Welcome to {{ site_title }}!</h2>
+        <p>{{ welcome_message }}</p>
+    </main>
+    <footer>
+        <p>&copy; {{ current_year }} {{ site_title }}. All rights reserved.</p>
+    </footer>
+</body>
+</html>
